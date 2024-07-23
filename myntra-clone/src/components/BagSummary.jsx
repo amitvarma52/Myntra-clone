@@ -1,26 +1,21 @@
 import React from 'react'
 
-const BagSummary = ({}) => {
-    const BagSummary={
-        totalItem:5,
-        totalMRP:2234,
-        totalDiscount:299,
-        finalPayment:1992,
-    }
+const Summary = ({Summary}) => {
+    
   return (
     <div className="bag-summary">
       <div className="bag-details-container">
         <div className="price-header">
-          PRICE DETAILS ({BagSummary.totalItem} Items){" "}
+          PRICE DETAILS ({Summary.totalItem} Items){" "}
         </div>
         <div className="price-item">
           <span className="price-item-tag">Total MRP</span>
-          <span className="price-item-value">₹ {BagSummary.totalMRP}</span>
+          <span className="price-item-value">₹ {Summary.totalMRP}</span>
         </div>
         <div className="price-item">
-          <span className="price-item-tag">Discount on MRP</span>
+          <span className="price-item-tag">Discount of 20%</span>
           <span className="price-item-value priceDetail-base-discount">
-            -₹ {BagSummary.totalDiscount}
+            -₹ {Summary.totalDiscount}
           </span>
         </div>
         <div className="price-item">
@@ -30,7 +25,7 @@ const BagSummary = ({}) => {
         <hr />
         <div className="price-footer">
           <span className="price-item-tag">Total Amount</span>
-          <span className="price-item-value">₹ {BagSummary.finalPayment}</span>
+          <span className="price-item-value">₹ {Summary.finalPayment}</span>
         </div>
       </div>
       <button className="btn-place-order">
@@ -40,4 +35,4 @@ const BagSummary = ({}) => {
   );
 }
 
-export default BagSummary
+export default Summary

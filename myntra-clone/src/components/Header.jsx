@@ -4,7 +4,9 @@ import React from "react";
 import { IoMdPerson } from "react-icons/io";
 import { FaGrinHearts, FaShoppingBag } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Header = () => {
+  const bags=useSelector(state=>state.bags)
   return (
     <header>
       <div className="logo_container">
@@ -47,7 +49,7 @@ const Header = () => {
         <Link className="action_container" to="/bag">
           <FaShoppingBag />
           <span className="action_name">Bag</span>
-          <span className="bag-item-count">0</span>
+          <span className="bag-item-count">{bags.length}</span>
         </Link>
       </div>
     </header>

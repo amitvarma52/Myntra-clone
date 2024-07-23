@@ -3,29 +3,36 @@
 import React from "react";
 import BagSummary from "../components/BagSummary";
 import BagItem from "../components/BagItem";
+import { useSelector } from "react-redux";
 
 const Bag = () => {
-  const item = {
-    id: "005",
-    image: "images/5.jpg", // 1st by default it will search in public folder
-    company: "Roadster",
-    item_name: "Pure Cotton T-shirt",
-    original_price: 1399,
-    current_price: 489,
-    discount_percentage: 65,
-    return_period: 14,
-    delivery_date: "10 Oct 2023",
-    rating: {
-      stars: 4.2,
-      count: 3500,
-    },
+  const bags = useSelector((state) => state.bags);
+  const items = useSelector((state) => state.items);
+  const finalItems = items.filter((element) => {
+    return bags.includes(element.id);
+  });
+  const total = finalItems.reduce((a, element) => {
+    return a + +element.current_price;
+  }, 0);
+  const Summary = {
+    totalItem: finalItems.length,
+    totalMRP: total,
+    totalDiscount: Math.floor(total * 0.2),
+    finalPayment: 99 + total - Math.floor(total * 0.2),
   };
+  if(finalItems.length==0){
+    return <h1 className="no-items">NO ITEMS IN BAG</h1>
+  }
   return (
     <>
       <main>
         <div className="bag-page">
-          <div className="bag-items-container"><BagItem item={item}/></div>
-          <BagSummary />
+          <div className="bag-items-container">
+            {finalItems.map((element) => (
+              <BagItem item={element} />
+            ))}
+          </div>
+          <BagSummary Summary={Summary} />
         </div>
       </main>
     </>
